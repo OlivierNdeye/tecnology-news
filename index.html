@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Portal-de-noticias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <img
+      alt="Logo"
+      src="https://appproject.dhiwise.com/dhiwise-logo.png?c=&v="
+      style="width: 0px; height: 0px; display: none"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/swiper@11.0.6/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/font.css" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/components.css" />
+    <link rel="stylesheet" type="text/css" href="./css/portaldenoticias.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.0.6/swiper-bundle.min.js" defer></script>
+    <script>
+      async function handleSlider() {
+        const slider = document.querySelector("#slider");
+
+        // Wait for all content to load before setting maxWidth
+        const imageList = slider.querySelectorAll("img");
+        const onLoadPromiseList = [];
+        for (const image of imageList) {
+          if (image.complete) continue;
+
+          const onLoadPromise = new Promise((resolve, reject) => {
+            if (image.complete) return resolve();
+            image.onload = resolve;
+            image.onerror = resolve;
+          });
+          onLoadPromiseList.push(onLoadPromise);
+        }
+        await Promise.all(onLoadPromiseList);
+
+        // Set max width and height to prevent slider from overflowing
+        slider.style.maxWidth = getComputedStyle(slider).width;
+        slider.style.maxHeight = getComputedStyle(slider).height;
+
+        const sliderParent = slider.parentElement;
+        const sliderTrack = document.querySelector("#slider > .swiper-wrapper");
+        const slides = document.querySelectorAll("#slider > .swiper-wrapper > .swiper-slide");
+
+        // Clone slides for infinite loop
+        const slidesToShow = 1;
+        const slidesRequired = 2;
+        for (let i = 0; slides.length <= slidesToShow && i <= slidesRequired - 1; i++) {
+          const index = i % slidesToShow;
+          const clone = slides[index]?.cloneNode(true);
+          clone?.setAttribute("cloned", "");
+          sliderTrack?.appendChild(clone);
+        }
+
+        const swiper = new Swiper("#slider", {
+          grabCursor: true,
+          loop: true,
+          slidesOffsetAfter: 0,
+          slidesOffsetBefore: 0,
+          slidesPerView: 1,
+          navigation: {
+            prevEl: "#slider-control-prev",
+            nextEl: "#slider-control-next",
+          },
+          breakpoints: {
+            0: { slidesPerView: 1 },
+            551: { slidesPerView: 1 },
+            1051: { slidesPerView: 1 },
+          },
+        });
+      }
+
+      /**
+       * Hydrate slider #slider
+       */
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          await handleSlider();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="portal-de-noticias">
+      <div class="columnlogonotic">
+        <img src="public/images/img_logo_noticias_1.png" alt="Logonoticiasone" class="logonoticiasone" />
+        <div class="columnpublicida">
+          <div class="columnmenu_one">
+            <header class="navegacao">
+              <div class="menu">
+                <a href="#">
+                  <img src="public/images/img_menu.svg" alt="Menu" class="menu_one" />
+                </a>
+                <h4 class="menu_two ui heading size-headingxl">Menu</h4>
+              </div>
+              <div class="pesquisa">
+                <img src="public/images/img_search.svg" alt="Search" class="search_one" />
+                <div class="pesquisa_one"></div>
+              </div>
+            </header>
+            <div class="stackfundocarro">
+              <div class="columnfundocarr">
+                <div id="slider" class="slider swiper">
+                  <div class="swiper-wrapper">
+                    <img
+                      src="public/images/img_fundo_carrossel.png"
+                      alt="Fundocarrossel"
+                      class="fundocarrossel swiper-slide"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="rowsetaesq_one">
+                <button id="slider-control-prev" class="setaesq_one">
+                  <img src="public/images/img_seta_esq.svg" />
+                </button>
+                <button id="slider-control-next" class="setadir_one">
+                  <img src="public/images/img_seta_dir.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="rowpublicidade">
+            <div class="publicidade">
+              <img src="public/images/img_publicidade.png" alt="Publicidade" class="publicidade_one" />
+            </div>
+          </div>
+          <div class="rowcardone_one">
+            <div class="card">
+              <img src="public/images/img_card_1.png" alt="Cardone" class="cardone_one" />
+              <div class="columntitulo">
+                <h1 class="titulo ui heading size-heading2xl">Realidade Aumentada: A nova tendencia do seculo XVII</h1>
+                <h2 class="description-1 ui heading size-headingxl">
+                  A evolução tecnologica é uma realidade nos dias atuais e temos visto que na area de entertenimento e
+                  audiovisual, o uso de RA é algo totalmente comum
+                </h2>
+              </div>
+            </div>
+            <div class="listtitulo">
+              <div class="card-1">
+                <img src="public/images/img_card_2.png" alt="Image" class="image" />
+                <div class="columntitulo-1">
+                  <h3 class="titulo-1 ui heading size-headingxl">
+                    Realidade Aumentada: A nova tendencia do seculo XVII
+                  </h3>
+                  <h4 class="description-2 ui heading size-headings">
+                    A evolução tecnologica é uma realidade nos dias atuais e temos visto que na area de entertenimento e
+                    audiovisual, o uso de RA é algo totalmente comum
+                  </h4>
+                </div>
+              </div>
+              <div class="card-1">
+                <img src="public/images/img_card_3.png" alt="Image" class="image" />
+                <div class="columntitulo-1">
+                  <h5 class="titulo-1 ui heading size-headingxl">As incríveis imagens feitas com impressão 3D</h5>
+                  <h6 class="description-2 ui heading size-headings">
+                    A evolução tecnologica é uma realidade nos dias atuais e temos visto que na area de entertenimento e
+                    audiovisual, o uso de RA é algo totalmente comum
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rowvdeos">
+            <div class="columntecnologi">
+              <div class="columncardtwo">
+                <div class="columnvdeos">
+                  <h5 class="vdeos ui heading size-headinglg">Vídeos</h5>
+                  <img src="public/images/img_separador.svg" alt="Separador" class="separador_one" />
+                </div>
+                <div class="listdescription">
+                  <div class="videonoticia">
+                    <img src="public/images/img_card_2_182x252.png" alt="Image" class="image-4" />
+                    <div class="rowdescription">
+                      <p class="description ui text size-textxs">
+                        Tela Quebrada, o que fazer?<br /><br />10 dicas de como contornar esse momento tão imprevisível
+                      </p>
+                    </div>
+                  </div>
+                  <div class="videonoticia">
+                    <img src="public/images/img_card_2_1.png" alt="Image" class="image-4" />
+                    <div class="rowdescription">
+                      <p class="description ui text size-textxs">
+                        Sobre Homeoffice<br /><br />O que mudou do início da pandemia até os dias de hoje
+                      </p>
+                    </div>
+                  </div>
+                  <div class="videonoticia">
+                    <img src="public/images/img_card_2.png" alt="Image" class="image-4" />
+                    <div class="rowdescription">
+                      <p class="description ui text size-textxs">
+                        Estundando com a Alexa<br />
+                        <br /> As principais funcionalidades para estudar programação usando
+                        a Assistente de Amazon
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bloconoticias">
+                <h5 class="tecnologia_etc ui heading size-headinglg">TECNOLOGIA & ETC</h5>
+                <img src="public/images/img_separador.svg" alt="Separador" class="separador_three" />
+                <div class="rowrevoluodas">
+                  <div class="cardmaior">
+                    <p class="revoluodasmaq ui heading size-headingxs">Revolução das Maquinas!</p>
+                    <div class="columnempresabu">
+                      <p class="description-7 ui heading size-texts">
+                        Empresas de tecnologia avançam em criação <br />de Robos Domésticos.
+                      </p>
+                      <p class="empresabuscarea ui text size-textxs">
+                        Empresa busca realizar o que é esperado desde os anos 80
+                      </p>
+                    </div>
+                    <img src="public/images/img_card_2_156x230.png" alt="Cardtwo" class="cardtwo_one" />
+                  </div>
+                  <div class="cardmenores">
+                    <div class="cardmenor">
+                      <div class="columnloremipsu-2">
+                        <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                        <p class="description-8 ui text size-textxs">
+                          Lorem ipsum dolor sit amet <br />
+                          consectetur adipiscing elit. Morbi vitae feugiat ante.
+                        </p>
+                      </div>
+                      <div class="cardtwo_one-1"></div>
+                    </div>
+                    <div class="cardmenor">
+                      <div class="columnloremipsu-2">
+                        <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                        <p class="description-8 ui text size-textxs">
+                          Lorem ipsum dolor sit amet <br />
+                          consectetur adipiscing elit. Morbi vitae feugiat ante.
+                        </p>
+                      </div>
+                      <div class="cardtwo_one-1"></div>
+                    </div>
+                    <div class="cardmenor">
+                      <div class="columnloremipsu-2">
+                        <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                        <p class="description-8 ui text size-textxs">
+                          Lorem ipsum dolor sit amet <br />
+                          consectetur adipiscing elit. Morbi vitae feugiat ante.
+                        </p>
+                      </div>
+                      <div class="cardtwo_one-1"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="listcardsuperio">
+              <div class="cardlateral">
+                <div class="cardsuperior"></div>
+                <div class="portaldenoticia">
+                  <div class="column">
+                    <div class="columnloremipsu">
+                      <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                      <p class="description ui text size-textxs">
+                        Lorem ipsum dolor sit amet <br />
+                        consectetur adipiscing elit.
+                      </p>
+                    </div>
+                    <img src="public/images/img_separador.svg" alt="Image" class="image-7" />
+                  </div>
+                  <div class="column-1">
+                    <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                    <p class="description ui text size-textxs">
+                      Lorem ipsum dolor sit amet <br />
+                      consectetur adipiscing elit.
+                    </p>
+                  </div>
+                  <img src="public/images/img_separador.svg" alt="Image" class="image-2" />
+                  <div class="column_one">
+                    <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                    <p class="description ui text size-textxs">
+                      Lorem ipsum dolor sit amet <br />
+                      consectetur adipiscing elit.
+                    </p>
+                  </div>
+                  <div class="column-2">
+                    <img src="public/images/img_separador.svg" alt="Image" class="image-8" />
+                    <div class="column_two">
+                      <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                      <p class="description ui text size-textxs">
+                        Lorem ipsum dolor sit amet <br />
+                        consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cardlateral">
+                <div class="cardsuperior"></div>
+                <div class="portaldenoticia">
+                  <div class="column">
+                    <div class="columnloremipsu">
+                      <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                      <p class="description ui text size-textxs">
+                        Lorem ipsum dolor sit amet <br />
+                        consectetur adipiscing elit.
+                      </p>
+                    </div>
+                    <img src="public/images/img_separador.svg" alt="Image" class="image-7" />
+                  </div>
+                  <div class="column-1">
+                    <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                    <p class="description ui text size-textxs">
+                      Lorem ipsum dolor sit amet <br />
+                      consectetur adipiscing elit.
+                    </p>
+                  </div>
+                  <img src="public/images/img_separador.svg" alt="Image" class="image-2" />
+                  <div class="column_one">
+                    <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                    <p class="description ui text size-textxs">
+                      Lorem ipsum dolor sit amet <br />
+                      consectetur adipiscing elit.
+                    </p>
+                  </div>
+                  <div class="column-2">
+                    <img src="public/images/img_separador.svg" alt="Image" class="image-8" />
+                    <div class="column_two">
+                      <p class="ui heading size-headingmd">Lorem ipsum dolor sit</p>
+                      <p class="description ui text size-textxs">
+                        Lorem ipsum dolor sit amet <br />
+                        consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cardlateral3">
+            <div class="rowtitulobotao">
+              <h5 class="titulobotao ui heading size-headinglg">Lorem ipsum</h5>
+            </div>
+            <p class="description ui text size-textxs">
+              Lorem ipsum dolor sit amet <br />
+              consectetur adipiscing elit. Morbi vitae feugiat .
+            </p>
+            <button class="flex-row-center-center faa_uma">Faça uma pergunta</button>
+          </div>
+          <div class="rodap">
+            <div class="columnnossigana">
+              <div>
+                <div class="rownossiganas">
+                  <h5 class="nossiganas ui heading size-headinglg">nos siga nas redes sociais:</h5>
+                  <div class="rowjamfacebook">
+                    <div class="facebook">
+                      <img src="public/images/img_jam_facebook.svg" alt="Jamfacebook" class="jamfacebook_one" />
+                    </div>
+                    <img src="public/images/img_info.svg" alt="Info" class="info_one" />
+                    <div class="youtube">
+                      <img src="public/images/img_hugeicons_youtube.svg" alt="Hugeicons" class="hugeicons_one" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <footer class="footerlogonotic">
+                <div class="row_one">
+                  <div class="rowlogonoticias">
+                    <div class="logonoticias2">
+                      <img
+                        src="public/images/img_logo_noticias_1.png"
+                        alt="Logonoticiasone"
+                        class="logonoticiasone-1"
+                      />
+                      <div class="separator_one"></div>
+                    </div>
+                    <ul class="columninformati">
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">informatica</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">tecnologia</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">marketing digital</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rowseparator">
+                    <div class="separator_three"></div>
+                    <ul class="columnjogos">
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">jogos</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">Realidade virtual</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">BET 123</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rowseparator-1">
+                    <div class="separator_three"></div>
+                    <ul class="columnjogos">
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">Agronegocio</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">PEGN</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">Notícias</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rowseparator-1">
+                    <div class="separator_three"></div>
+                    <ul class="columnjogos">
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">dropshipping</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">computadores</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h5 class="ui heading size-headinglg">BIG TECHS</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="separator_nine"></div>
+                <p class="copyright ui heading size-headings">© 2024 - Todos os direitos reservados</p>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
